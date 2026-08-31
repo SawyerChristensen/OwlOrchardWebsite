@@ -4,32 +4,36 @@ Static marketing and support site for Owl Orchard LLC. No build step, no depende
 Every page is plain HTML sharing one stylesheet.
 
 ```
-index.html                      Home
-poker-for-imessage.html         Poker for iMessage
-card-games-for-imessage.html    Card Games for iMessage
-support.html                    Support + FAQ
-privacy-poker.html              Privacy policy — Poker
-privacy-card-games.html         Privacy policy — Card Games
-style.css                       Shared styles (light + dark)
-assets/                         App icons
+wrangler.jsonc                         Cloudflare Workers static-assets config
+public/index.html                      Home
+public/poker-for-imessage.html         Poker for iMessage
+public/card-games-for-imessage.html    Card Games for iMessage
+public/support.html                    Support + FAQ
+public/privacy-poker.html              Privacy policy — Poker
+public/privacy-card-games.html         Privacy policy — Card Games
+public/404.html                        Not found
+public/style.css                       Shared styles (light + dark)
+public/assets/                         App icons
 ```
 
 ## Local preview
 
 ```
-python3 -m http.server 8931
+python3 -m http.server 8931 --directory public
 ```
 
 Then open http://localhost:8931. Links use absolute paths (`/style.css`), so open it through
 a server rather than double-clicking the files.
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers — static assets)
 
 Connected to this repo. Pushing to `main` deploys automatically.
 
-- Framework preset: **None**
 - Build command: *(empty)*
-- Build output directory: `/`
+- Deploy command: `npx wrangler deploy`
+
+Everything else lives in `wrangler.jsonc`: it serves `./public` with no server code, and
+falls back to `public/404.html` for unmatched paths.
 
 ## App Store Connect URLs
 
