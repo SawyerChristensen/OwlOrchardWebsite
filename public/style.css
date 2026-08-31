@@ -244,7 +244,7 @@ header.site .wrap {
   padding: 4px 0;
 }
 
-.brand svg { width: 25px; height: 25px; color: var(--brand); flex: none; }
+.brand svg { width: 34px; height: 23px; color: var(--brand); flex: none; }
 .brand:hover { color: var(--brand); }
 
 nav.site {
@@ -414,12 +414,9 @@ nav.site a[aria-current="page"] { color: var(--text); border-bottom-color: var(-
 .card-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 
 .card img.icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 13px;
+  width: 64px;
+  height: 64px;
   flex: none;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
 }
 
 .card h3 { margin: 0 0 3px; font-size: 1.08rem; }
@@ -475,12 +472,9 @@ nav.site a[aria-current="page"] { color: var(--text); border-bottom-color: var(-
 }
 
 .app-head img {
-  width: clamp(76px, 11vw, 104px);
-  height: clamp(76px, 11vw, 104px);
-  border-radius: 23%;
+  width: clamp(84px, 12vw, 116px);
+  height: clamp(84px, 12vw, 116px);
   flex: none;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
 }
 
 .app-head h1 { margin: 0 0 6px; }
@@ -616,7 +610,7 @@ footer.site {
 .foot-grid p { color: var(--muted); font-size: 0.92rem; }
 
 .foot-brand { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px; }
-.foot-brand svg { width: 24px; height: 24px; color: var(--brand); }
+.foot-brand svg { width: 33px; height: 22px; color: var(--brand); }
 .foot-brand span { font-weight: 640; color: var(--text); font-size: 1rem; }
 
 .foot-legal {

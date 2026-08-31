@@ -73,10 +73,35 @@ Connected to this repo. Pushing to `main` deploys automatically.
   horizontally scrollable, full-bleed strip, rather than sliced screenshots. `pano/*.jpg` are
   1000px tall. The "scroll sideways" hint below each one is shown by script only when the
   banner actually overflows, so it never lies on a wide screen.
-- **App icons** come from each project's own asset catalog (`AppIcon.appiconset`), not from the
-  App Store CDN — the CDN serves the Liquid Glass renders, which have transparent margins.
+- **App icons are the Liquid Glass renders**, 256px with transparent squircle corners and a
+  baked-in bevel and shadow — so CSS adds no border, radius, or box-shadow of its own. Prism and
+  Poker came from the rendered PNGs in their collection folders; Hex Chess, Politica, and Card
+  Games were rendered from their `.icon` bundles with `actool` (see "Regenerating icons").
+- **The owl mark** in `assets/owl.svg` and inline in the page header is traced from
+  `Documents/OwlOrchard/OwlOrchardLogoWithBeak.png`: two tangent rings (r=375, stroke 99, centres
+  750 apart) and a 45° square beak, on a 1600×1083 viewBox. The inline copy uses `currentColor`
+  so it follows the theme. If a vector original turns up, replace the `OWL` constant in
+  `tools/build.py` and `assets/owl.svg` — nothing else references the geometry.
 - **Progressive enhancement.** The only JavaScript is a scroll-reveal animation and the pano
   hint. Both no-op without JS, and both respect `prefers-reduced-motion`.
+
+## Regenerating icons
+
+Liquid Glass icons cannot be rendered from a `.icon` bundle by hand — `actool` does it. The
+macOS target is the one that emits transparent rounded corners:
+
+```
+xcrun actool --app-icon <Name> --compile <outdir> --platform macosx \
+  --minimum-deployment-target 26.0 --target-device mac \
+  --output-partial-info-plist /tmp/p.plist <path>/<Name>.icon
+iconutil -c iconset <outdir>/<Name>.icns -o <outdir>/set.iconset
+# use set.iconset/icon_128x128@2x.png — 256px, the largest actool emits
+```
+
+Pass absolute paths; `actool` caches a working directory via `ibtoold` and will silently write
+somewhere else if you rely on `cd`. 256px is enough for every size the site displays (largest is
+116px, so 2× is covered), but a 512px or 1024px export straight out of Icon Composer would be
+better if you ever want one — drop it in `public/assets/<app>-icon.png` and nothing else changes.
 
 ## App Store Connect URLs
 

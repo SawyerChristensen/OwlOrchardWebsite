@@ -15,16 +15,16 @@ SITE = "https://owlorchard.com"
 EMAIL = "support@owlorchard.com"
 GH = "https://github.com/SawyerChristensen"
 
+# Traced from Documents/OwlOrchard/OwlOrchardLogoWithBeak.png: two tangent rings
+# (r=375, stroke 99, centres 750 apart) and a 45-degree square beak. Uses currentColor
+# so it inherits the theme. Replace wholesale if a vector original arrives.
 OWL = (
-    '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false" fill="currentColor">'
-    '<path d="M10.2 10.9 8.4 3.4 15 6.5Z"/>'
-    '<path d="M29.8 10.9 31.6 3.4 25 6.5Z"/>'
-    '<path d="M20 5.4c-6.4 0-11.5 4.7-11.5 11v5.1C8.5 28.2 13.6 33.2 20 33.2s11.5-5 11.5-11.7v-5.1c0-6.3-5.1-11-11.5-11Z"/>'
-    '<circle cx="14.8" cy="17.2" r="4.6" fill="var(--bg)"/>'
-    '<circle cx="25.2" cy="17.2" r="4.6" fill="var(--bg)"/>'
-    '<circle cx="14.8" cy="17.2" r="1.95"/>'
-    '<circle cx="25.2" cy="17.2" r="1.95"/>'
-    '<path d="M17.4 22.6h5.2L20 26.7Z" fill="var(--bg)"/>'
+    '<svg viewBox="0 0 1600 1083" aria-hidden="true" focusable="false">'
+    '<g fill="none" stroke="currentColor" stroke-width="99">'
+    '<circle cx="424.5" cy="424.5" r="375"/>'
+    '<circle cx="1174.5" cy="424.5" r="375"/>'
+    '</g>'
+    '<path d="M800 800 941 941 800 1082 659 941Z" fill="currentColor"/>'
     "</svg>"
 )
 
@@ -269,7 +269,7 @@ def app_card(app):
     return f"""
       <a class="card {app['theme']} reveal" href="/{app['slug']}">
         <div class="card-top">
-          <img class="icon" src="{app['icon']}" alt="" width="58" height="58" loading="lazy">
+          <img class="icon" src="{app['icon']}" alt="" width="64" height="64" loading="lazy">
           <div>
             <h3>{app['name']}</h3>
             <p class="card-sub">{app['sub']} &middot; {app['pills'][0]}</p>
@@ -292,7 +292,7 @@ def app_head(app, extra_pills=()):
     pills = "".join(f'<span class="pill">{p}</span>' for p in extra_pills)
     return f"""
   <div class="app-head">
-    <img src="{app['icon']}" alt="{app['short']} app icon" width="104" height="104">
+    <img src="{app['icon']}" alt="{app['short']} app icon" width="116" height="116">
     <div>
       <h1>{app['name']}</h1>
       <p class="tagline">{app['tagline']}</p>
@@ -341,7 +341,7 @@ def app_jsonld(app):
         "applicationCategory": app["category"],
         "operatingSystem": app["os"],
         "url": f"{SITE}/{app['slug']}",
-        "author": {"@type": "Person", "name": "Sawyer Christensen"},
+        "author": {"@type": "Organization", "name": "Owl Orchard LLC"},
         "publisher": {"@type": "Organization", "name": "Owl Orchard LLC"},
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
     }
@@ -360,10 +360,10 @@ def build_home():
     <div class="prose">
       <span class="eyebrow">Independent studio &middot; Oregon, USA</span>
       <h1>Native apps, built one at a time.</h1>
-      <p class="lede">Owl Orchard is the software studio of Sawyer Christensen &mdash; a
-      one-person shop shipping Swift apps for iPhone, iPad, and Mac. Five so far: hexagonal
-      chess, card games that live inside iMessage, a tracker for the U.S. Congress, and a
-      music visualizer for macOS.</p>
+      <p class="lede">Owl Orchard is an independent software studio in Oregon, building
+      native apps for iPhone, iPad, and Mac. Five so far: hexagonal chess, card games that
+      live inside iMessage, a tracker for the U.S. Congress, and a music visualizer for
+      macOS.</p>
       <p>Every one of them is free. None of them show you an advertisement, and none of them
       ask you to make an account unless you actually want a ranked online match.</p>
       <div class="hero-actions">
@@ -424,16 +424,15 @@ def build_home():
   <div class="wrap">
     <div class="prose reveal">
       <span class="eyebrow">The studio</span>
-      <h2>One person, in Oregon.</h2>
-      <p>Owl Orchard is run by Sawyer Christensen, a computer science graduate of the
-      University of Oregon who has worked as a cybersecurity analyst and as a research
-      assistant at the University of Konstanz. Design, code, localization, artwork, and the
-      support email all land on the same desk.</p>
-      <p>That is a constraint as much as a boast: it means fewer apps, shipped slowly, and
-      answered personally.</p>
+      <h2>Made in Oregon, slowly.</h2>
+      <p>Owl Orchard is small and independent, with no investors to answer to and no growth
+      target to hit. That shows up in the work: fewer apps, released when they are actually
+      finished, and kept working afterwards rather than replaced by the next thing.</p>
+      <p>It also means nobody here is arguing for an analytics SDK, and no app in the
+      catalogue needs anything from you beyond the time you choose to spend in it.</p>
       <div class="hero-actions">
-        <a class="btn btn-ghost" href="/about.html">More about the studio</a>
-        <a class="btn btn-ghost" href="{GH}" rel="noopener">Source on GitHub</a>
+        <a class="btn btn-ghost" href="/about.html">About the studio</a>
+        <a class="btn btn-ghost" href="/support.html">Get in touch</a>
       </div>
     </div>
   </div>
@@ -446,12 +445,11 @@ def build_home():
         "alternateName": "Owl Orchard",
         "url": SITE,
         "email": EMAIL,
-        "founder": {"@type": "Person", "name": "Sawyer Christensen"},
         "address": {"@type": "PostalAddress", "addressRegion": "OR", "addressCountry": "US"},
         "sameAs": [GH],
     }
     page("index.html", "Owl Orchard — native apps for iPhone, iPad, and Mac",
-         "Owl Orchard is Sawyer Christensen&#39;s independent software studio in Oregon. "
+         "Owl Orchard is an independent software studio in Oregon. "
          "Hex Chess, Politica, Prism, and card games for iMessage — all free, all native, none tracking you.",
          body, current="/#apps", jsonld=ld)
 
@@ -862,9 +860,9 @@ def build_about():
   <div class="wrap">
     <div class="prose">
       <span class="eyebrow">About</span>
-      <h1>One developer, five apps, no roadmap meetings.</h1>
-      <p class="lede">Owl Orchard LLC is the studio Sawyer Christensen publishes software
-      under. It is an Oregon company with exactly one person in it.</p>
+      <h1>An independent studio in Oregon.</h1>
+      <p class="lede">Owl Orchard LLC builds native applications for iPhone, iPad, and Mac.
+      Five of them so far, and every one is free.</p>
     </div>
   </div>
 </section>
@@ -872,33 +870,42 @@ def build_about():
 <section class="section" style="padding-top:clamp(36px,5vw,52px)">
   <div class="wrap">
     <div class="prose">
-      <p>Sawyer is a computer science graduate of the University of Oregon. Before the studio
-      he worked as a cybersecurity analyst and as a research assistant at the University of
-      Konstanz in Germany &mdash; which is roughly where the habit of over-localizing everything
-      came from.</p>
+      <p>The catalogue has nothing obvious in common. One app is a chess variant from 1936.
+      One is a live feed of congressional roll-call votes. One turns whatever your Mac is
+      playing into Milkdrop visuals. Two of them live inside iMessage and never open a window
+      of their own.</p>
 
-      <p>The apps have nothing in common on the surface. One is a chess variant from 1936, one
-      is a feed of congressional roll-call votes, one turns your Mac&rsquo;s audio into Milkdrop
-      visuals, and two of them live inside iMessage. What they share is how they get built:
-      native Swift, Apple&rsquo;s own frameworks, shipped free, and maintained by the same person who
-      answers the support email.</p>
+      <p>What they share is how they are built. Every app is written in Swift against Apple&rsquo;s
+      own frameworks &mdash; no web views in a native wrapper, no cross-platform runtime between
+      the app and the hardware. Every app is free to download and free to use. Every app is
+      localized well past English, and built to work with VoiceOver, Voice Control, Dynamic
+      Type, and Reduce Motion rather than around them.</p>
 
-      <h2>What that means in practice</h2>
-      <p>A one-person studio has real limits, and it is more useful to name them than to
-      pretend otherwise. Releases are slower. There is no on-call rotation. But there is also
-      nobody to argue for an analytics SDK, nobody who needs an engagement metric to go up,
-      and no reason for any of these apps to want anything from you beyond the time you choose
-      to spend in them.</p>
+      <h2>Small on purpose</h2>
+      <p>Owl Orchard is independent, with no investors and no growth target. That is a real
+      constraint: releases are slower than a funded studio&rsquo;s, and there is no overnight
+      support rotation.</p>
+      <p>It buys something back, though. There is nobody here making the case for an
+      analytics SDK, nobody who needs a retention metric to move, and no reason for any of
+      these apps to want anything from you beyond the time you choose to spend in them. The
+      two iMessage apps ship with no networking code whatsoever. The other three are specific,
+      in writing, about the few things that leave your device.</p>
+
+      <h2>Where it is</h2>
+      <p>The studio is registered and run in Oregon, United States. Support email is answered
+      from here, usually within a day or two.</p>
 
       <h2>The details</h2>
 {deftable([
   ("Studio", "Owl Orchard LLC &mdash; Oregon, United States"),
-  ("Developer", "Sawyer Christensen"),
   ("Platforms", "iOS, iPadOS, macOS"),
   ("Built with", "Swift and SwiftUI, plus SpriteKit, MapKit, WidgetKit, StoreKit, Metal, "
                  "and a vendored C++ rendering engine where a project calls for it"),
-  ("Apps", "Hex Chess, Politica, Prism, Card Games for iMessage, and Poker for iMessage"),
-  ("Code", f'<a href="{GH}" rel="noopener">github.com/SawyerChristensen</a> &mdash; most of it is public'),
+  ("Apps", '<a href="/hex-chess.html">Hex Chess</a>, <a href="/politica.html">Politica</a>, '
+           '<a href="/prism.html">Prism</a>, '
+           '<a href="/card-games-for-imessage.html">Card Games for iMessage</a>, and '
+           '<a href="/poker-for-imessage.html">Poker for iMessage</a>'),
+  ("Price", "Every app is free. The only in-app purchase anywhere is a cosmetic card back."),
   ("Contact", f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
 ])}
 
@@ -911,8 +918,8 @@ def build_about():
 </section>
 """
     page("about.html", "About — Owl Orchard",
-         "Owl Orchard LLC is Sawyer Christensen&#39;s one-person software studio in Oregon, "
-         "building native Swift apps for iPhone, iPad, and Mac.", body, current="/about.html")
+         "Owl Orchard LLC is an independent software studio in Oregon building native Swift "
+         "apps for iPhone, iPad, and Mac.", body, current="/about.html")
 
 
 # ================================================================== support
@@ -925,8 +932,8 @@ def build_support():
       <span class="eyebrow">Support</span>
       <h1>A real person answers this email.</h1>
       <p class="lede">Write to <a href="mailto:{EMAIL}">{EMAIL}</a> about any of the five apps.
-      Owl Orchard is a one-person studio, so give it a day or two &mdash; but it will be answered,
-      and it will be answered by the person who wrote the app.</p>
+      Owl Orchard is a small studio, so give it a day or two &mdash; but every message is read, and
+      answered by someone who worked on the app you are writing about.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="mailto:{EMAIL}">Email support</a>
       </div>
@@ -1182,8 +1189,8 @@ def imessage_privacy(app):
 
 def build_privacy_hexchess():
     a = BY["hexchess"]
-    inner = """      <p>Hex Chess is developed by Sawyer Christensen of Owl Orchard. This policy explains what
-      the app does and does not do with information.</p>
+    inner = """      <p>Hex Chess is published by Owl Orchard. This policy explains what the app does and does
+      not do with information.</p>
       <p>Playing offline &mdash; single player against the CPU, or passing one device back and forth
       &mdash; involves no account and collects nothing. Everything below applies only if you choose
       to sign in for online play.</p>
@@ -1215,7 +1222,7 @@ def build_privacy_hexchess():
 
       <h2>Where it is stored</h2>
       <p>Account and match data is stored using Google&rsquo;s Firebase infrastructure, encrypted in
-      transit and at rest, with access restricted to the developer. Achievements are also
+      transit and at rest, with access restricted to the studio. Achievements are also
       reported to Apple&rsquo;s Game Center, governed by
       <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple&rsquo;s privacy policy</a>.
       A local copy of your profile is cached on your device so the app still works without a
@@ -1240,8 +1247,8 @@ def build_privacy_hexchess():
 
 def build_privacy_politica():
     a = BY["politica"]
-    inner = """      <p>Politica is developed by Sawyer Christensen of Owl Orchard. This policy explains what
-      the app does and does not do with information.</p>
+    inner = """      <p>Politica is published by Owl Orchard. This policy explains what the app does and does
+      not do with information.</p>
 
       <h2>Information collected</h2>
       <p><strong>None.</strong> Politica has no account system, no analytics framework, no
@@ -1287,8 +1294,8 @@ def build_privacy_politica():
 
 def build_privacy_prism():
     a = BY["prism"]
-    inner = """      <p>Prism is developed by Sawyer Christensen of Owl Orchard. This policy explains what the
-      app does and does not do with information.</p>
+    inner = """      <p>Prism is published by Owl Orchard. This policy explains what the app does and does not
+      do with information.</p>
 
       <h2>Information collected</h2>
       <p><strong>None.</strong> Prism has no account system, no analytics framework, no advertising
@@ -1331,7 +1338,7 @@ def build_privacy_index():
     rows = "".join(f"""
       <a class="card {a['theme']} reveal" href="{a['privacy']}">
         <div class="card-top">
-          <img class="icon" src="{a['icon']}" alt="" width="58" height="58" loading="lazy">
+          <img class="icon" src="{a['icon']}" alt="" width="64" height="64" loading="lazy">
           <div>
             <h3>{a['short']}</h3>
             <p class="card-sub">{a['sub']}</p>
@@ -1415,21 +1422,16 @@ def build_404():
 
 # ================================================================== extras
 
-OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <rect width="40" height="40" rx="9" fill="#2f5d3f"/>
-  <g fill="#fbfaf7">
-    <path d="M11.6 12.2 10.1 6.4 15.3 8.8Z"/>
-    <path d="M28.4 12.2 29.9 6.4 24.7 8.8Z"/>
-    <path d="M20 7.6c-5.2 0-9.4 3.8-9.4 9v4.2c0 5.3 4.2 9.4 9.4 9.4s9.4-4.1 9.4-9.4v-4.2c0-5.2-4.2-9-9.4-9Z"/>
-  </g>
-  <g fill="#2f5d3f">
-    <circle cx="15.8" cy="17.4" r="3.7"/>
-    <circle cx="24.2" cy="17.4" r="3.7"/>
-    <path d="M17.9 22.9h4.2L20 26.2Z"/>
-  </g>
-  <g fill="#fbfaf7">
-    <circle cx="15.8" cy="17.4" r="1.55"/>
-    <circle cx="24.2" cy="17.4" r="1.55"/>
+# Standalone favicon: same mark as the inline OWL above, on the brand tile.
+# Colours are literal here — CSS custom properties do not resolve in a favicon context.
+OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="43" fill="#2f5d3f"/>
+  <g transform="translate(26.88 49.2) scale(0.0864)">
+    <g fill="none" stroke="#fbfaf7" stroke-width="99">
+      <circle cx="424.5" cy="424.5" r="375"/>
+      <circle cx="1174.5" cy="424.5" r="375"/>
+    </g>
+    <path d="M800 800 941 941 800 1082 659 941Z" fill="#fbfaf7"/>
   </g>
 </svg>
 """
