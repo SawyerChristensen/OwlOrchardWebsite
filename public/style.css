@@ -245,7 +245,7 @@ header.site .wrap {
   display: flex;
   align-items: center;
   gap: 10px 28px;
-  min-height: 62px;
+  min-height: 70px;
   flex-wrap: wrap;
 }
 
@@ -255,7 +255,7 @@ header.site .wrap {
   gap: 9px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 1.12rem;
   letter-spacing: -0.015em;
   color: var(--text);
   text-decoration: none;
@@ -263,7 +263,7 @@ header.site .wrap {
   padding: 4px 0;
 }
 
-.brand svg { width: 34px; height: 23px; color: var(--brand); flex: none; }
+.brand svg { width: 38px; height: 20px; color: var(--brand); flex: none; }
 .brand:hover { color: var(--brand); }
 
 nav.site {
@@ -276,7 +276,7 @@ nav.site {
 nav.site a {
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.94rem;
+  font-size: 1.03rem;
   font-weight: 520;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
@@ -629,7 +629,7 @@ footer.site {
 .foot-grid p { color: var(--muted); font-size: 0.92rem; }
 
 .foot-brand { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px; }
-.foot-brand svg { width: 33px; height: 22px; color: var(--brand); }
+.foot-brand svg { width: 33px; height: 18px; color: var(--brand); }
 .foot-brand span { font-weight: 640; color: var(--text); font-size: 1rem; }
 
 .foot-legal {

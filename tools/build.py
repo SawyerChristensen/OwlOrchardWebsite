@@ -18,14 +18,15 @@ GH = "https://github.com/SawyerChristensen"
 # Exact geometry from the vector original, Documents/OwlOrchard/owlOrchardLogo.psd
 # (live Photoshop shape layers, read straight off their vector masks): two tangent rings
 # (r=375, stroke 100, centres 750 apart), two eyebrow bars flush with the ring tops, and
-# a 200x200 square beak rotated 45 degrees. PSD coordinates less (200, 575), which puts
-# the artwork's own bounding box at the origin. Uses currentColor so it inherits the theme.
+# a downward-pointing triangular beak (apex at 800,730; 200-wide base flush with the ring
+# bottoms at y=850). PSD coordinates less (200, 575), which puts the artwork's own bounding
+# box at the origin. Uses currentColor so it inherits the theme.
 OWL = (
-    '<svg viewBox="0 0 1600 1083.17" aria-hidden="true" focusable="false">'
+    '<svg viewBox="0 0 1600 850" aria-hidden="true" focusable="false">'
     '<g fill="currentColor">'
     '<rect width="425" height="100"/>'
     '<rect x="1175" width="425" height="100"/>'
-    '<path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>'
+    '<path d="M800 730 900 850 700 850Z"/>'
     '</g>'
     '<g fill="none" stroke="currentColor" stroke-width="100">'
     '<circle cx="425" cy="425" r="375"/>'
@@ -1433,8 +1434,8 @@ def build_404():
 # colour has to follow the tab bar — brand green on light, cream on dark, via a
 # prefers-color-scheme block (custom properties do not resolve in a favicon
 # context, so the two colours are literal). viewBox is the mark's own bounding
-# box (0..1600 x, 0..1083.17 y) padded to a centred square.
-OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -458 2000 2000">
+# box (0..1600 x, 0..850 y) padded to a centred square.
+OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -575 2000 2000">
   <style>
     svg { color: #2f5d3f; }
     @media (prefers-color-scheme: dark) { svg { color: #fbfaf7; } }
@@ -1442,7 +1443,7 @@ OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -458 2000 20
   <g fill="currentColor">
     <rect width="425" height="100"/>
     <rect x="1175" width="425" height="100"/>
-    <path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>
+    <path d="M800 730 900 850 700 850Z"/>
   </g>
   <g fill="none" stroke="currentColor" stroke-width="100">
     <circle cx="425" cy="425" r="375"/>

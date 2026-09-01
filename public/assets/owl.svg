@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -458 2000 2000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -575 2000 2000">
   <style>
     svg { color: #2f5d3f; }
     @media (prefers-color-scheme: dark) { svg { color: #fbfaf7; } }
@@ -6,7 +6,7 @@
   <g fill="currentColor">
     <rect width="425" height="100"/>
     <rect x="1175" width="425" height="100"/>
-    <path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>
+    <path d="M800 730 900 850 700 850Z"/>
   </g>
   <g fill="none" stroke="currentColor" stroke-width="100">
     <circle cx="425" cy="425" r="375"/>
