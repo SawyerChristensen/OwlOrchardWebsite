@@ -77,15 +77,25 @@ Connected to this repo. Pushing to `main` deploys automatically.
   baked-in bevel and shadow — so CSS adds no border, radius, or box-shadow of its own. Prism and
   Poker came from the rendered PNGs in their collection folders; Hex Chess, Politica, and Card
   Games were rendered from their `.icon` bundles with `actool` (see "Regenerating icons").
-- **The owl mark** in `assets/owl.svg` and inline in the page header is traced from
-  `Documents/OwlOrchard/OwlOrchardLogoWithBeak.png`: two tangent rings (r=375, stroke 99, centres
-  750 apart) and a 45° square beak, on a 1600×1083 viewBox. The inline copy uses `currentColor`
-  so it follows the theme. If a vector original turns up, replace the `OWL` constant in
-  `tools/build.py` and `assets/owl.svg` — nothing else references the geometry.
+- **The owl mark** in `assets/owl.svg` and inline in the page header is exact vector geometry
+  read off the live shape layers in `Documents/OwlOrchard/owlOrchardLogo.psd`: two tangent rings
+  (r=375, stroke 100, centres 750 apart), two eyebrow bars flush with the ring tops, and a
+  200×200 square beak rotated 45°, on a 1600×1083.17 viewBox. Coordinates are the PSD's own less
+  (200, 575), which puts the artwork's bounding box at the origin. The inline copy uses
+  `currentColor` so it follows the theme. The geometry lives only in the `OWL` and `OWL_FILE`
+  constants in `tools/build.py`; `assets/owl-192.png` is the apple-touch-icon, rendered from
+  `assets/owl.svg` at 192px (see "Regenerating icons").
 - **Progressive enhancement.** The only JavaScript is a scroll-reveal animation and the pano
   hint. Both no-op without JS, and both respect `prefers-reduced-motion`.
 
 ## Regenerating icons
+
+`assets/owl-192.png` is just `assets/owl.svg` rasterised, so redo it whenever the mark changes:
+
+```
+python3 -c "import cairosvg; cairosvg.svg2png(url='public/assets/owl.svg', \
+  write_to='public/assets/owl-192.png', output_width=192, output_height=192)"
+```
 
 Liquid Glass icons cannot be rendered from a `.icon` bundle by hand — `actool` does it. The
 macOS target is the one that emits transparent rounded corners:

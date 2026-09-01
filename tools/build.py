@@ -15,16 +15,22 @@ SITE = "https://owlorchard.com"
 EMAIL = "support@owlorchard.com"
 GH = "https://github.com/SawyerChristensen"
 
-# Traced from Documents/OwlOrchard/OwlOrchardLogoWithBeak.png: two tangent rings
-# (r=375, stroke 99, centres 750 apart) and a 45-degree square beak. Uses currentColor
-# so it inherits the theme. Replace wholesale if a vector original arrives.
+# Exact geometry from the vector original, Documents/OwlOrchard/owlOrchardLogo.psd
+# (live Photoshop shape layers, read straight off their vector masks): two tangent rings
+# (r=375, stroke 100, centres 750 apart), two eyebrow bars flush with the ring tops, and
+# a 200x200 square beak rotated 45 degrees. PSD coordinates less (200, 575), which puts
+# the artwork's own bounding box at the origin. Uses currentColor so it inherits the theme.
 OWL = (
-    '<svg viewBox="0 0 1600 1083" aria-hidden="true" focusable="false">'
-    '<g fill="none" stroke="currentColor" stroke-width="99">'
-    '<circle cx="424.5" cy="424.5" r="375"/>'
-    '<circle cx="1174.5" cy="424.5" r="375"/>'
+    '<svg viewBox="0 0 1600 1083.17" aria-hidden="true" focusable="false">'
+    '<g fill="currentColor">'
+    '<rect width="425" height="100"/>'
+    '<rect x="1175" width="425" height="100"/>'
+    '<path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>'
     '</g>'
-    '<path d="M800 800 941 941 800 1082 659 941Z" fill="currentColor"/>'
+    '<g fill="none" stroke="currentColor" stroke-width="100">'
+    '<circle cx="425" cy="425" r="375"/>'
+    '<circle cx="1175" cy="425" r="375"/>'
+    '</g>'
     "</svg>"
 )
 
@@ -1427,11 +1433,15 @@ def build_404():
 OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
   <rect width="192" height="192" rx="43" fill="#2f5d3f"/>
   <g transform="translate(26.88 49.2) scale(0.0864)">
-    <g fill="none" stroke="#fbfaf7" stroke-width="99">
-      <circle cx="424.5" cy="424.5" r="375"/>
-      <circle cx="1174.5" cy="424.5" r="375"/>
+    <g fill="#fbfaf7">
+      <rect width="425" height="100"/>
+      <rect x="1175" width="425" height="100"/>
+      <path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>
     </g>
-    <path d="M800 800 941 941 800 1082 659 941Z" fill="#fbfaf7"/>
+    <g fill="none" stroke="#fbfaf7" stroke-width="100">
+      <circle cx="425" cy="425" r="375"/>
+      <circle cx="1175" cy="425" r="375"/>
+    </g>
   </g>
 </svg>
 """
