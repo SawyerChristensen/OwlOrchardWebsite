@@ -140,6 +140,7 @@ def head(title, desc, canonical, theme="", icon="/assets/owl.svg", jsonld=None):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{SITE}{canonical}">
+<link rel="preload" href="/assets/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="{icon}" type="{'image/svg+xml' if icon.endswith('.svg') else 'image/png'}">
 <link rel="apple-touch-icon" href="/assets/owl-192.png">
