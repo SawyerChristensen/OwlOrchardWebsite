@@ -1428,20 +1428,24 @@ def build_404():
 
 # ================================================================== extras
 
-# Standalone favicon: same mark as the inline OWL above, on the brand tile.
-# Colours are literal here — CSS custom properties do not resolve in a favicon context.
-OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="43" fill="#2f5d3f"/>
-  <g transform="translate(26.88 49.2) scale(0.0864)">
-    <g fill="#fbfaf7">
-      <rect width="425" height="100"/>
-      <rect x="1175" width="425" height="100"/>
-      <path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>
-    </g>
-    <g fill="none" stroke="#fbfaf7" stroke-width="100">
-      <circle cx="425" cy="425" r="375"/>
-      <circle cx="1175" cy="425" r="375"/>
-    </g>
+# Standalone favicon: the bare mark, no tile. Transparent background, so the
+# colour has to follow the tab bar — brand green on light, cream on dark, via a
+# prefers-color-scheme block (custom properties do not resolve in a favicon
+# context, so the two colours are literal). viewBox is the mark's own bounding
+# box (0..1600 x, 0..1083.17 y) padded to a centred square.
+OWL_FILE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -458 2000 2000">
+  <style>
+    svg { color: #2f5d3f; }
+    @media (prefers-color-scheme: dark) { svg { color: #fbfaf7; } }
+  </style>
+  <g fill="currentColor">
+    <rect width="425" height="100"/>
+    <rect x="1175" width="425" height="100"/>
+    <path d="M800 800.33 941.42 941.75 800 1083.17 658.58 941.75Z"/>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="100">
+    <circle cx="425" cy="425" r="375"/>
+    <circle cx="1175" cy="425" r="375"/>
   </g>
 </svg>
 """
