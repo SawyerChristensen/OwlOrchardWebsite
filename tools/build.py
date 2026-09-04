@@ -462,14 +462,14 @@ def build_hexchess():
       where a bishop has three colours to work with, a pawn captures diagonally into a
       different geometry, and none of your memorized openings survive contact.</p>
 
-      <p>That is the appeal. Hex Chess is as easy to learn as ordinary chess and levels the
+      <p>Hex Chess is as easy to learn as ordinary chess and levels the
       board between a grandmaster and a beginner, because on ninety-one hexes nobody has
       twenty years of pattern recognition to fall back on.</p>
     </div>
 {features([
   ("Play the computer",
    "A CPU opponent for practice, on a board where the usual heuristics do not transfer. "
-   "Good for learning how the three-colour bishops and hex-diagonal pawns actually behave."),
+   "Good for learning how the pieces behave before challenging a friend."),
   ("Pass and play",
    "Hand the device back and forth for a game across one table &mdash; no account, no "
    "connection, no setup. Perfect for road trips."),
@@ -477,7 +477,7 @@ def build_hexchess():
    "Send a friend a game code and play over the network, with an Elo rating and a global "
    "leaderboard tracking where you land."),
   ("Game Center achievements",
-   "Achievements and progress tracked through Apple&rsquo;s Game Center, viewable straight "
+   "Achievements and progress tracked through Apple&rsquo;s Game Center, viewable "
    "from the main menu."),
   ("Live Activities",
    "An active game can surface on the Lock Screen and in the Dynamic Island, so you know "
