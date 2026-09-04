@@ -45,7 +45,7 @@ APPS = [
         icon="/assets/hexchess-icon.png",
         sub="iPhone &amp; iPad", status="live",
         store="https://apps.apple.com/us/app/hex-chess/id6743667749",
-        desc="Gli&#324;ski&rsquo;s 1936 hexagonal chess, with a CPU opponent, pass-and-play, "
+        desc="Gli&#324;ski&rsquo;s 1936 hexagonal chess, with a CPU opponent, pass-and-play mode, "
              "and ranked online matches against friends.",
         pills=["Board game", "25 languages"],
         privacy="/privacy-hex-chess.html",
@@ -71,12 +71,12 @@ APPS = [
     dict(
         key="prism", slug="prism.html", theme="t-prism",
         name="Prism &mdash; Music Visualizer", short="Prism",
-        tagline="Your music, rendered.",
+        tagline="Your music, alive.",
         icon="/assets/prism-icon.png",
         sub="Mac", status="live",
         store="https://apps.apple.com/us/app/prism-music-visualizer/id6798428433?mt=12",
-        desc="Milkdrop visuals rendered live from whatever your Mac is playing, with a curated "
-             "library of 2,500+ community presets.",
+        desc="Milkdrop visuals rendered live from whatever music your Mac is playing, with a curated "
+             "library of 7,500+ community presets.",
         pills=["Music", "22 languages"],
         privacy="/privacy-prism.html",
         meta_desc="Prism renders classic Milkdrop visuals live from any audio playing on your Mac — "
@@ -86,7 +86,7 @@ APPS = [
     dict(
         key="cardgames", slug="card-games-for-imessage.html", theme="t-cardgames",
         name="Card Games for iMessage", short="Card Games",
-        tagline="Your seat at the table is ready.",
+        tagline="Your seat at the table is ready!",
         icon="/assets/cardgames-icon.png",
         sub="iMessage app", status="live",
         store="https://apps.apple.com/us/app/card-games-for-imessage/id6757935828",
@@ -101,12 +101,12 @@ APPS = [
     dict(
         key="poker", slug="poker-for-imessage.html", theme="t-poker",
         name="Poker for iMessage", short="Poker",
-        tagline="Deal a hand into the group chat.",
+        tagline="Deal a hand into the group chat!",
         icon="/assets/poker-icon.png",
         sub="iMessage app", status="soon",
         store=None,
-        desc="Texas Hold&rsquo;Em, Omaha, and 7 Card Stud, dealt straight into a conversation. "
-             "No real money, ever.",
+        desc="Texas Hold&rsquo;Em, Omaha, and 7 Card Stud, dealt straight into an iMessage conversation. "
+             "Currently under development.",
         pills=["Card game", "18 languages"],
         privacy="/privacy-poker.html",
         meta_desc="Texas Hold'Em, Omaha, and 7 Card Stud played turn by turn inside your iMessage "
@@ -186,8 +186,7 @@ def footer():
 
       <div>
         <span class="foot-brand">{OWL}<span>Owl Orchard</span></span>
-        <p>An independent software studio in Oregon, building native apps for
-        Apple platforms. Free, quiet, and made to last.</p>
+        <p>An independent software studio in Oregon, building native apps for Apple platforms.</p>
       </div>
 
       <div>
@@ -367,13 +366,11 @@ def build_home():
   <div class="wrap">
     <div class="prose">
       <span class="eyebrow">Independent studio &middot; Oregon, USA</span>
-      <h1>Native apps, built one at a time.</h1>
+      <h1>Organic experiences native to iOS</h1>
       <p class="lede">Owl Orchard is an independent software studio in Oregon, building
-      native apps for iPhone, iPad, and Mac. Five so far: hexagonal chess, card games that
-      live inside iMessage, a tracker for the U.S. Congress, and a music visualizer for
-      macOS.</p>
-      <p>Every one of them is free. None of them show you an advertisement, and none of them
-      ask you to make an account unless you actually want a ranked online match.</p>
+      apps for iPhone, iPad, and Mac. Four so far: Hexagonal Chess, Card Games that
+      iMessage, a U.S. Congress representative tracker, and a music visualizer for macOS.</p>
+      <p>No ads. 100% free. All profits are from optional in-app purchases.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#apps">See the apps</a>
         <a class="btn btn-ghost" href="/about.html">About the studio</a>
@@ -383,7 +380,7 @@ def build_home():
     <dl class="stats">
       <div class="stat"><dt>Apps</dt><dd>5</dd></div>
       <div class="stat"><dt>Platforms</dt><dd>iOS &middot; iPadOS &middot; macOS</dd></div>
-      <div class="stat"><dt>Localized into</dt><dd>Up to 25 languages</dd></div>
+      <div class="stat"><dt>Localized into</dt><dd>25 languages</dd></div>
       <div class="stat"><dt>Price</dt><dd>Free</dd></div>
     </dl>
   </div>
@@ -393,7 +390,7 @@ def build_home():
   <div class="wrap">
     <div class="prose" style="margin-bottom:34px">
       <h2>The apps</h2>
-      <p>Four are on the App Store today. The fifth is finished and on its way.</p>
+      <p>Four on the App Store today with the fifth on its way.</p>
     </div>
     <div class="appgrid">{cards}
     </div>
@@ -404,8 +401,7 @@ def build_home():
   <div class="wrap">
     <div class="prose" style="margin-bottom:8px">
       <h2>How the work gets done</h2>
-      <p>Four things hold across every project, whether it is a chess engine or a
-      congressional bill feed.</p>
+      <p>Four things hold across every project:</p>
     </div>
 {features([
   ("Native, all the way down",
@@ -413,36 +409,17 @@ def build_home():
    "WidgetKit, StoreKit, Metal. No web views wrapped in an app shell, and no "
    "cross-platform runtime standing between you and the hardware."),
   ("Free, and honest about it",
-   "Every app is free to download and free to play. There is no advertising SDK in any of "
-   "them, no subscription, and no feature held hostage. The only thing ever sold is a "
-   "cosmetic card back, bought once."),
-  ("Built for more than English",
-   "Hex Chess ships in 25 languages, Prism in 22, the card game apps in 18. VoiceOver and "
-   "Voice Control reach individual cards and board tiles; Dynamic Type and Reduce Motion "
-   "are honored throughout."),
-  ("Privacy as an architecture choice",
-   "The iMessage apps contain no networking code at all. Politica resolves your location "
-   "on device and never transmits it. Hex Chess only asks for an account if you want a "
-   "ranked online game. Nothing is tracked, sold, or shared."),
+   "Every app is free to download and free to play. There is no advertising and analytics "
+   "SDK in any of them, no subscription, and no feature held hostage. The only thing ever "
+   "sold are cosmetic card backs."),
+  ("Built to be accessible",
+   "VoiceOver and Voice Control reach individual cards and board tiles, not just top-level "
+   "buttons. Dynamic Type, Reduce Motion and other accessibility features are honored "
+   "throughout."),
+  ("Privacy is the architecture of choice",
+   "Politica resolves your location on device and never transmits it. Hex Chess only asks "
+   "for an account if you want a ranked online game. Nothing is tracked, sold, or shared."),
 ])}
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="prose reveal">
-      <span class="eyebrow">The studio</span>
-      <h2>Made in Oregon, slowly.</h2>
-      <p>Owl Orchard is small and independent, with no investors to answer to and no growth
-      target to hit. That shows up in the work: fewer apps, released when they are actually
-      finished, and kept working afterwards rather than replaced by the next thing.</p>
-      <p>It also means nobody here is arguing for an analytics SDK, and no app in the
-      catalogue needs anything from you beyond the time you choose to spend in it.</p>
-      <div class="hero-actions">
-        <a class="btn btn-ghost" href="/about.html">About the studio</a>
-        <a class="btn btn-ghost" href="/support.html">Get in touch</a>
-      </div>
-    </div>
   </div>
 </section>
 """
@@ -456,7 +433,7 @@ def build_home():
         "address": {"@type": "PostalAddress", "addressRegion": "OR", "addressCountry": "US"},
         "sameAs": [GH],
     }
-    page("index.html", "Owl Orchard — native apps for iPhone, iPad, and Mac",
+    page("index.html", "Owl Orchard — native apps for Apple platforms",
          "Owl Orchard is an independent software studio in Oregon. "
          "Hex Chess, Politica, Prism, and card games for iMessage — all free, all native, none tracking you.",
          body, current="/#apps", jsonld=ld)
@@ -495,19 +472,19 @@ def build_hexchess():
    "Good for learning how the three-colour bishops and hex-diagonal pawns actually behave."),
   ("Pass and play",
    "Hand the device back and forth for a game across one table &mdash; no account, no "
-   "connection, no setup."),
+   "connection, no setup. Perfect for road trips."),
   ("Ranked online matches",
    "Send a friend a game code and play over the network, with an Elo rating and a global "
    "leaderboard tracking where you land."),
   ("Game Center achievements",
-   "Achievements and progress tracked through Apple&rsquo;s own Game Center, viewable straight "
+   "Achievements and progress tracked through Apple&rsquo;s Game Center, viewable straight "
    "from the main menu."),
   ("Live Activities",
    "An active game can surface on the Lock Screen and in the Dynamic Island, so you know "
    "when it is your move without opening the app."),
   ("Twenty-five languages",
-   "Hex Chess ships localized in twenty-five languages, from Arabic and Armenian to "
-   "Turkish and both written forms of Chinese."),
+   "Hex Chess ships localized in twenty-five languages so you can play opponents from "
+   "around the world."),
 ])}
 
     <div class="prose">
@@ -551,9 +528,9 @@ def build_politica():
 <section class="section {a['theme']}" style="padding-top:0">
   <div class="wrap">
     <div class="prose">
-      <p class="lede">Congress publishes almost everything it does. The problem was never
-      secrecy &mdash; it is that the record is scattered across half a dozen government
-      systems, none of which were built to be read on a phone.</p>
+      <p class="lede">Congress publishes almost everything it does. 
+      The problem is that the record is scattered across half a dozen
+      government systems, none of which were built to be read on a phone.</p>
 
       <p>Politica pulls those sources into one app: who represents you, what they voted on,
       what they sponsored, who funds them, what they trade, and where the bill you care about
@@ -563,18 +540,18 @@ def build_politica():
   ("Know who represents you",
    "Your House member, both senators, and your state&rsquo;s governor &mdash; found from precise "
    "location, approximate location, or a ZIP code you type in. Location is resolved on "
-   "device and never transmitted."),
+   "device and never transmitted beyond Apple's servers."),
   ("A feed that ranks by progress",
    "Recent bills weighted by how far each one got &mdash; introduced, in committee, passed a "
    "chamber, on the president&rsquo;s desk, enacted &mdash; and by recency, including the notable "
    "ones that failed. Searchable by title, subject, progress, and topic."),
   ("Roll calls, your reps first",
    "Full House and Senate vote tallies on every bill, with your own representatives&rsquo; votes "
-   "surfaced at the top. Bookmark a bill and get a local notification when its status moves."),
+   "surfaced at the top. Bookmark a bill and get a notification when its status changes."),
   ("Follow the money",
    "Per-representative profiles covering committees, sponsored and cosponsored bills, "
    "contact details, complete voting history, and the top PACs and individual donors behind "
-   "the campaign."),
+   "their campaigns."),
   ("Trading disclosures",
    "A trading-activity indicator assembled from House Periodic Transaction Reports and the "
    "Senate&rsquo;s electronic filing portal &mdash; the stock trades members are required to "
@@ -651,7 +628,7 @@ def build_prism():
       <p>Prism runs genuine <code>.milk</code> preset files through a real, vendored build of the
       projectM engine: the same format that powered two decades of Winamp visuals, not a
       lookalike. Drop in your own preset packs, browse the curated built-in library of more
-      than 2,500, or drag a single <code>.milk</code> file onto the window.</p>
+      than 7,500, or drag a single <code>.milk</code> file onto the window.</p>
     </div>
 {features([
   ("Whatever is playing",
@@ -679,7 +656,7 @@ def build_prism():
       <h2>Built for the hardware</h2>
       <p>Prism is native to Apple Silicon. The projectM C++ engine is bridged into Metal
       through an ANGLE/EGL context, which keeps the original OpenGL preset semantics intact
-      while rendering on Apple&rsquo;s modern graphics stack. On a current Mac it clears 800 frames
+      while rendering on Apple&rsquo;s modern graphics stack. On a modern (M1+) Mac it clears 800 frames
       per second.</p>
 
       <h2>Details</h2>
@@ -688,7 +665,7 @@ def build_prism():
   ("Price", "Free"),
   ("Category", "Music &middot; Graphics &amp; Design"),
   ("Languages", "22"),
-  ("Ships as", "App, Music.app visualizer plug-in, and screen saver"),
+  ("Ships as", "App, Music.app visualizer plug-in, and a screen saver"),
   ("Permissions", "System audio capture; optionally Apple Events, to read now-playing "
                   "metadata from Spotify or Music"),
   ("Source", f'<a href="{GH}/Prism" rel="noopener">github.com/SawyerChristensen/Prism</a>'),
@@ -748,7 +725,7 @@ def build_cardgames():
     <div class="prose">
       <h2>What it costs</h2>
       <p>All three games are free and there is no advertising anywhere in the app. The only
-      in-app purchase is a card back &mdash; a cosmetic deck design, bought once through Apple&rsquo;s
+      in-app purchases are deck designs bought once through Apple&rsquo;s
       own purchase system. A card back bought here also unlocks in Poker for iMessage, and the
       other way round.</p>
 
@@ -764,7 +741,6 @@ def build_cardgames():
   ("Type", "Standalone iMessage app &mdash; no separate app to open"),
   ("Price", "Free, with optional cosmetic card backs"),
   ("Languages", "18"),
-  ("Networking", "None &mdash; the app contains no networking code at all"),
   ("Source", f'<a href="{GH}/DeckedOut" rel="noopener">github.com/SawyerChristensen/DeckedOut</a>'),
 ])}
 
@@ -799,7 +775,7 @@ def build_poker():
       <p class="lede">Three poker variants dealt straight into the conversations you are
       already having. Open a table in a group chat and everyone plays at their own pace.</p>
 
-      <p>Like its sibling, Poker for iMessage is a standalone iMessage app &mdash; nothing separate
+      <p>Like its sibling app "Card Games for iMessage", Poker for iMessage is a standalone iMessage app &mdash; nothing separate
       to launch, no account, no lobby. Hands run turn by turn, so a game can play out over an
       afternoon or over a week without anyone needing to be online at the same moment.</p>
 
@@ -824,8 +800,8 @@ def build_poker():
       wagering of real money or real-world items anywhere in the app.</p>
 
       <h2>What it costs</h2>
-      <p>Every game is free and there is no advertising. The only in-app purchase is a
-      cosmetic card back, bought once through Apple&rsquo;s own purchase system &mdash; and a design
+      <p>Every game is free and there is no advertising. The only in-app purchases are
+      cosmetic deck designs, bought once through Apple&rsquo;s own purchase system. A design
       bought here also unlocks in Card Games for iMessage.</p>
 
       <h2>Accessibility and languages</h2>
@@ -839,7 +815,6 @@ def build_poker():
   ("Type", "Standalone iMessage app &mdash; no separate app to open"),
   ("Price", "Free, with optional cosmetic card backs"),
   ("Languages", "18"),
-  ("Networking", "None &mdash; the app contains no networking code at all"),
   ("Status", "Finished and on its way to the App Store"),
 ])}
 
@@ -868,9 +843,8 @@ def build_about():
   <div class="wrap">
     <div class="prose">
       <span class="eyebrow">About</span>
-      <h1>An independent studio in Oregon.</h1>
-      <p class="lede">Owl Orchard LLC builds native applications for iPhone, iPad, and Mac.
-      Five of them so far, and every one is free.</p>
+      <h1>Homegrown in Oregon.</h1>
+      <p class="lede">Owl Orchard builds native applications for iPhone, iPad, and Mac.</p>
     </div>
   </div>
 </section>
@@ -878,22 +852,8 @@ def build_about():
 <section class="section" style="padding-top:clamp(36px,5vw,52px)">
   <div class="wrap">
     <div class="prose">
-      <p>The catalogue has nothing obvious in common. One app is a chess variant from 1936.
-      One is a live feed of congressional roll-call votes. One turns whatever your Mac is
-      playing into Milkdrop visuals. Two of them live inside iMessage and never open a window
-      of their own.</p>
-
-      <p>What they share is how they are built. Every app is written in Swift against Apple&rsquo;s
-      own frameworks &mdash; no web views in a native wrapper, no cross-platform runtime between
-      the app and the hardware. Every app is free to download and free to use. Every app is
-      localized well past English, and built to work with VoiceOver, Voice Control, Dynamic
-      Type, and Reduce Motion rather than around them.</p>
-
       <h2>Small on purpose</h2>
-      <p>Owl Orchard is independent, with no investors and no growth target. That is a real
-      constraint: releases are slower than a funded studio&rsquo;s, and there is no overnight
-      support rotation.</p>
-      <p>It buys something back, though. There is nobody here making the case for an
+      <p>Owl Orchard is independent, with no investors and no growth target. Nobody here making the case for an
       analytics SDK, nobody who needs a retention metric to move, and no reason for any of
       these apps to want anything from you beyond the time you choose to spend in them. The
       two iMessage apps ship with no networking code whatsoever. The other three are specific,
@@ -907,13 +867,10 @@ def build_about():
 {deftable([
   ("Studio", "Owl Orchard LLC &mdash; Oregon, United States"),
   ("Platforms", "iOS, iPadOS, macOS"),
-  ("Built with", "Swift and SwiftUI, plus SpriteKit, MapKit, WidgetKit, StoreKit, Metal, "
-                 "and a vendored C++ rendering engine where a project calls for it"),
   ("Apps", '<a href="/hex-chess.html">Hex Chess</a>, <a href="/politica.html">Politica</a>, '
            '<a href="/prism.html">Prism</a>, '
            '<a href="/card-games-for-imessage.html">Card Games for iMessage</a>, and '
            '<a href="/poker-for-imessage.html">Poker for iMessage</a>'),
-  ("Price", "Every app is free. The only in-app purchase anywhere is a cosmetic card back."),
   ("Contact", f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
 ])}
 
@@ -938,7 +895,6 @@ def build_support():
   <div class="wrap">
     <div class="prose">
       <span class="eyebrow">Support</span>
-      <h1>A real person answers this email.</h1>
       <p class="lede">Write to <a href="mailto:{EMAIL}">{EMAIL}</a> about any of the five apps.
       Owl Orchard is a small studio, so give it a day or two &mdash; but every message is read, and
       answered by someone who worked on the app you are writing about.</p>
