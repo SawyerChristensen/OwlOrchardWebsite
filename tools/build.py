@@ -5,7 +5,8 @@ Emits plain static HTML into public/. The deployed site has no build step; this 
 only so the shared header, footer, and page chrome stay identical across every page.
 Run it from anywhere:  python3 tools/build.py
 
-It rewrites every .html file in public/ plus robots.txt, sitemap.xml, app-ads.txt, and assets/owl.svg.
+It rewrites every .html file in public/ plus robots.txt, sitemap.xml, app-ads.txt, _redirects, and
+assets/owl.svg.
 It never touches public/style.css or the images in public/assets/."""
 
 import json, os, pathlib
@@ -99,7 +100,7 @@ APPS = [
         category="GameApplication", os="iOS 17.0 or later",
     ),
     dict(
-        key="poker", slug="poker-for-imessage.html", theme="t-poker",
+        key="poker", slug="pocketpoker.html", theme="t-poker",
         name="Poker for iMessage", short="Poker",
         tagline="Deal a hand into the group chat!",
         icon="/assets/poker-icon.png",
@@ -870,7 +871,7 @@ def build_about():
   ("Apps", '<a href="/hex-chess.html">Hex Chess</a>, <a href="/politica.html">Politica</a>, '
            '<a href="/prism.html">Prism</a>, '
            '<a href="/card-games-for-imessage.html">Card Games for iMessage</a>, and '
-           '<a href="/poker-for-imessage.html">Poker for iMessage</a>'),
+           '<a href="/pocketpoker.html">Poker for iMessage</a>'),
   ("Contact", f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
 ])}
 
@@ -1419,11 +1420,18 @@ Sitemap: {SITE}/sitemap.xml
 APP_ADS = """google.com, pub-8402492093831742, DIRECT, f08c47fec0942fa0
 """
 
+# Old addresses, still linked from outside, sent on to the pages that replaced them. Poker's page moved
+# to /pocketpoker, the address on its App Store listing.
+REDIRECTS = """/poker-for-imessage.html /pocketpoker 301
+/poker-for-imessage /pocketpoker 301
+"""
+
 
 def build_extras():
     (OUT / "assets" / "owl.svg").write_text(OWL_FILE, encoding="utf-8")
     (OUT / "robots.txt").write_text(ROBOTS, encoding="utf-8")
     (OUT / "app-ads.txt").write_text(APP_ADS, encoding="utf-8")
+    (OUT / "_redirects").write_text(REDIRECTS, encoding="utf-8")
 
     urls = ["/", "/about.html", "/support.html", "/privacy.html"]
     urls += ["/" + a["slug"] for a in APPS]
@@ -1437,7 +1445,7 @@ def build_extras():
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
         + entries + "\n</urlset>\n", encoding="utf-8")
-    print(f"  owl.svg, robots.txt, app-ads.txt, sitemap.xml ({len(urls)} urls)")
+    print(f"  owl.svg, robots.txt, app-ads.txt, _redirects, sitemap.xml ({len(urls)} urls)")
 
 
 # ================================================================== main
