@@ -24,7 +24,7 @@ public/
   privacy-poker.html                    Privacy — Poker
   404.html                              Not found
   style.css                             Shared styles (light + dark, per-app accents)
-  robots.txt, sitemap.xml
+  robots.txt, sitemap.xml, app-ads.txt   app-ads.txt: Google AdMob, for Poker's ads
   assets/
     owl.svg, owl-192.png                Site mark / favicon / apple-touch-icon
     *-icon.png                          App icons, 512px, from each project's asset catalog

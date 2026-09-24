@@ -5,7 +5,7 @@ Emits plain static HTML into public/. The deployed site has no build step; this 
 only so the shared header, footer, and page chrome stay identical across every page.
 Run it from anywhere:  python3 tools/build.py
 
-It rewrites every .html file in public/ plus robots.txt, sitemap.xml, and assets/owl.svg.
+It rewrites every .html file in public/ plus robots.txt, sitemap.xml, app-ads.txt, and assets/owl.svg.
 It never touches public/style.css or the images in public/assets/."""
 
 import json, os, pathlib
@@ -1414,10 +1414,16 @@ Allow: /
 Sitemap: {SITE}/sitemap.xml
 """
 
+# The ad sellers allowed to sell ads in the studio's apps (IAB app-ads.txt): Google AdMob, for Poker's
+# rewarded ads. AdMob reads it from the developer website on the app's App Store listing.
+APP_ADS = """google.com, pub-8402492093831742, DIRECT, f08c47fec0942fa0
+"""
+
 
 def build_extras():
     (OUT / "assets" / "owl.svg").write_text(OWL_FILE, encoding="utf-8")
     (OUT / "robots.txt").write_text(ROBOTS, encoding="utf-8")
+    (OUT / "app-ads.txt").write_text(APP_ADS, encoding="utf-8")
 
     urls = ["/", "/about.html", "/support.html", "/privacy.html"]
     urls += ["/" + a["slug"] for a in APPS]
@@ -1431,7 +1437,7 @@ def build_extras():
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
         + entries + "\n</urlset>\n", encoding="utf-8")
-    print(f"  owl.svg, robots.txt, sitemap.xml ({len(urls)} urls)")
+    print(f"  owl.svg, robots.txt, app-ads.txt, sitemap.xml ({len(urls)} urls)")
 
 
 # ================================================================== main
