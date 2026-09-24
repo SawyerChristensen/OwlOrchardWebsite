@@ -13,7 +13,9 @@ public/
   politica.html                         Politica: Congress Tracker
   prism.html                            Prism — Music Visualizer
   card-games-for-imessage.html          Card Games for iMessage
-  pocketpoker.html                      Poker for iMessage (owlorchard.com/pocketpoker)
+  pocketpoker.html                      Pocket Poker (owlorchard.com/pocketpoker)
+  pocketpoker/support.html              Support — Pocket Poker (its App Store Support URL)
+  pocketpoker/privacy.html              Privacy — Pocket Poker (its App Store Privacy Policy URL)
   about.html                            About the studio
   support.html                          Support + per-app FAQ
   privacy.html                          Index of all five privacy policies
@@ -21,11 +23,10 @@ public/
   privacy-politica.html                 Privacy — Politica
   privacy-prism.html                    Privacy — Prism
   privacy-card-games.html               Privacy — Card Games
-  privacy-poker.html                    Privacy — Poker
   404.html                              Not found
   style.css                             Shared styles (light + dark, per-app accents)
   robots.txt, sitemap.xml, app-ads.txt   app-ads.txt: Google AdMob, for Poker's ads
-  _redirects                            Old addresses (/poker-for-imessage.html → /pocketpoker)
+  _redirects                            Old addresses (Poker's → /pocketpoker, its privacy → /pocketpoker/privacy)
   assets/
     owl.svg, owl-192.png                Site mark / favicon / apple-touch-icon
     *-icon.png                          App icons, 512px, from each project's asset catalog
@@ -122,7 +123,7 @@ better if you ever want one — drop it in `public/assets/<app>-icon.png` and no
 | Politica | `/support.html#politica` | `/politica.html` | `/privacy-politica.html` |
 | Prism | `/support.html#prism` | `/prism.html` | `/privacy-prism.html` |
 | Card Games | `/support.html#card-games` | `/card-games-for-imessage.html` | `/privacy-card-games.html` |
-| Poker | `/support.html#card-games` | `/pocketpoker.html` | `/privacy-poker.html` |
+| Pocket Poker | `/pocketpoker/support.html` | `/pocketpoker.html` | `/pocketpoker/privacy.html` |
 
 All relative to `https://owlorchard.com`.
 

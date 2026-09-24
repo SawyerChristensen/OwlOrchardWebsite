@@ -101,18 +101,20 @@ APPS = [
     ),
     dict(
         key="poker", slug="pocketpoker.html", theme="t-poker",
-        name="Poker for iMessage", short="Poker",
-        tagline="Deal a hand into the group chat!",
+        name="Pocket Poker", short="Pocket Poker",
+        tagline="Deal a hand online, or into the group chat.",
         icon="/assets/poker-icon.png",
-        sub="iMessage app", status="soon",
+        sub="iPhone and iPad", status="soon",
         store=None,
-        desc="Texas Hold&rsquo;Em, Omaha, and 7 Card Stud, dealt straight into an iMessage conversation. "
-             "Currently under development.",
-        pills=["Card game", "18 languages"],
-        privacy="/privacy-poker.html",
-        meta_desc="Texas Hold'Em, Omaha, and 7 Card Stud played turn by turn inside your iMessage "
-                  "threads. Free to play, no ads, no real money. Coming soon.",
-        category="GameApplication", os="iOS 17.0 or later",
+        desc="Texas Hold&rsquo;Em, Omaha, and 7 Card Stud: fast tables online, games dealt into "
+             "your group chats, and a free AI trainer. Coming soon.",
+        pills=["Card game", "20+ languages"],
+        privacy="/pocketpoker/privacy.html",
+        support="/pocketpoker/support.html",
+        updated="September 23, 2026",
+        meta_desc="Texas Hold'Em, Omaha, and 7 Card Stud, online against other players or dealt "
+                  "into your iMessage threads. Free to play, no rake, no real money. Coming soon.",
+        category="GameApplication", os="iOS 26.0 or later",
     ),
 ]
 
@@ -267,6 +269,7 @@ def page(path, title, desc, body, current="", theme="", icon="/assets/owl.svg", 
             + header(current)
             + '\n<main id="main">\n' + body + "\n</main>\n"
             + footer() + REVEAL_JS + "\n</body>\n</html>\n")
+    (OUT / path).parent.mkdir(parents=True, exist_ok=True)
     (OUT / path).write_text(html, encoding="utf-8")
     print(f"  {path:32s} {len(html):>6,} bytes")
 
@@ -309,7 +312,7 @@ def app_head(app, extra_pills=()):
   </div>
 
   <div class="hero-actions">{cta}
-    <a class="btn btn-ghost" href="/support.html">Support</a>
+    <a class="btn btn-ghost" href="{app.get('support', '/support.html')}">Support</a>
   </div>"""
 
 
@@ -371,7 +374,8 @@ def build_home():
       <p class="lede">Owl Orchard is an independent software studio in Oregon, building
       apps for iPhone, iPad, and Mac. Four so far: Hexagonal Chess, Card Games that
       iMessage, a U.S. Congress representative tracker, and a music visualizer for macOS.</p>
-      <p>No ads. 100% free. All profits are from optional in-app purchases.</p>
+      <p>100% free to play. Profits come from optional in-app purchases, and the only ads,
+      in Pocket Poker, play when you choose to watch one.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#apps">See the apps</a>
         <a class="btn btn-ghost" href="/about.html">About the studio</a>
@@ -410,9 +414,10 @@ def build_home():
    "WidgetKit, StoreKit, Metal. No web views wrapped in an app shell, and no "
    "cross-platform runtime standing between you and the hardware."),
   ("Free, and honest about it",
-   "Every app is free to download and free to play. There is no advertising and analytics "
-   "SDK in any of them, no subscription, and no feature held hostage. The only thing ever "
-   "sold are cosmetic card backs."),
+   "Every app is free to download and free to play, with no subscription and no feature held "
+   "hostage, and none carries an analytics SDK. The only ads are Pocket Poker&rsquo;s, and they "
+   "play only when you choose to watch one for chips. What is for sale is optional: card backs, "
+   "and Pocket Poker&rsquo;s chip packs."),
   ("Built to be accessible",
    "VoiceOver and Voice Control reach individual cards and board tiles, not just top-level "
    "buttons. Dynamic Type, Reduce Motion and other accessibility features are honored "
@@ -727,7 +732,7 @@ def build_cardgames():
       <h2>What it costs</h2>
       <p>All three games are free and there is no advertising anywhere in the app. The only
       in-app purchases are deck designs bought once through Apple&rsquo;s
-      own purchase system. A card back bought here also unlocks in Poker for iMessage, and the
+      own purchase system. A card back bought here also unlocks in Pocket Poker, and the
       other way round.</p>
 
       <h2>Accessibility and languages</h2>
@@ -762,23 +767,25 @@ def build_poker():
     body = f"""
 <section class="hero {a['theme']}">
   <div class="wrap">
-{app_head(a, ["iOS 17+", "Free", "No real money"])}
+{app_head(a, ["iOS 26+", "Free", "No rake", "No real money"])}
   </div>
 </section>
 
 <section class="section-sm {a['theme']}" style="padding-bottom:0">
-{pano("poker", "Poker for iMessage: Texas Hold&rsquo;Em, Omaha, and 7 Card Stud dealt into a text thread, with chips, betting rounds, and group chat tables")}
+{pano("poker", "Pocket Poker: Texas Hold&rsquo;Em, Omaha, and 7 Card Stud dealt into a text thread, with chips, betting rounds, and group chat tables")}
 </section>
 
 <section class="section {a['theme']}" style="padding-top:0">
   <div class="wrap">
     <div class="prose">
-      <p class="lede">Three poker variants dealt straight into the conversations you are
-      already having. Open a table in a group chat and everyone plays at their own pace.</p>
+      <p class="lede">Three poker games, played two ways: at fast online tables against real
+      players, or dealt into the conversations you are already having, where everyone plays at
+      their own pace.</p>
 
-      <p>Like its sibling app "Card Games for iMessage", Poker for iMessage is a standalone iMessage app &mdash; nothing separate
-      to launch, no account, no lobby. Hands run turn by turn, so a game can play out over an
-      afternoon or over a week without anyone needing to be online at the same moment.</p>
+      <p>Sit down in one tap and you are in the next hand; fold, and you are dealt straight into
+      another. Ten leagues run from The Garage to Mount Olympus, the blinds climbing as you go.
+      Between hands, the dealer teaches: the rules of every game, the ideas behind good play,
+      and an AI trainer that deals you real spots and gives its verdict on each decision.</p>
 
       <h2>The games</h2>
     </div>
@@ -795,45 +802,180 @@ def build_poker():
 ])}
 
     <div class="prose">
+      <h2>Ways to play</h2>
+    </div>
+{features([
+  ("Quick Play",
+   "Fast-fold tables online. Buy in from your chips, play as long as you like, and leave "
+   "whenever you want. Step away and your seat waits a minute for you."),
+  ("In Messages",
+   "Deal a hand into a conversation and play it turn by turn, one on one or with the whole "
+   "group. A game can take an afternoon or a week."),
+  ("Learn",
+   "The rules of each game, the concepts behind good play, and a free AI trainer that "
+   "puts you in real spots and tells you how it would play them."),
+])}
+
+    <div class="prose">
+      <h2>Chips</h2>
+      <p>Everyone starts with 10,000 chips, and a stack that runs low refills itself, a chip at
+      a time, back up to 10,000. For more, win them, watch a short ad (1,000 chips, up to five a
+      day), or pick up a chip pack. There is no rake: every chip in a pot goes to the players
+      who win it.</p>
+
       <h2>No real money, ever</h2>
-      <p>Poker for iMessage is a simulated card game. Chips have no monetary value: they cannot
-      be bought, cashed out, transferred, or exchanged for anything of value, and there is no
-      wagering of real money or real-world items anywhere in the app.</p>
+      <p>Pocket Poker is a simulated card game. Chips can be bought, but they are for play only:
+      they have no cash value and cannot be cashed out, transferred, or exchanged for money,
+      prizes, or anything else of value. There is no wagering of real money or real-world items
+      anywhere in the app.</p>
 
       <h2>What it costs</h2>
-      <p>Every game is free and there is no advertising. The only in-app purchases are
-      cosmetic deck designs, bought once through Apple&rsquo;s own purchase system. A design
-      bought here also unlocks in Card Games for iMessage.</p>
+      <p>Every game is free. Chip packs and deck designs are optional, bought once through
+      Apple&rsquo;s own purchase system, and designs can be bought with chips too. A design bought
+      here also unlocks in Card Games for iMessage.</p>
 
-      <h2>Accessibility and languages</h2>
-      <p>Fully localized in 18 languages, with complete VoiceOver and Voice Control support
-      down to individual cards, Dynamic Type throughout, and reduced animation when Reduce
-      Motion is enabled.</p>
+      <h2>Languages</h2>
+      <p>Fully localized in more than 20 languages, following your device language
+      automatically.</p>
 
       <h2>Details</h2>
 {deftable([
-  ("Platforms", "iPhone and iPad, iOS 17.0 or later"),
-  ("Type", "Standalone iMessage app &mdash; no separate app to open"),
-  ("Price", "Free, with optional cosmetic card backs"),
-  ("Languages", "18"),
+  ("Platforms", "iPhone and iPad, iOS 26.0 or later"),
+  ("Includes", "An iMessage app, for games inside your conversations"),
+  ("Online play", "Sign in with Game Center &mdash; no separate account"),
+  ("Price", "Free, with optional chip packs and card backs"),
+  ("Languages", "20+"),
   ("Status", "Finished and on its way to the App Store"),
 ])}
 
       <div class="callout">
-        <p><strong>Not on the App Store yet.</strong> Poker for iMessage is complete and going
-        through review. This page will get a download button the moment it is live &mdash; in the
-        meantime, <a href="/support.html">get in touch</a> if you have questions.</p>
+        <p><strong>Not on the App Store yet.</strong> Pocket Poker is complete and going through
+        review. This page will get a download button the moment it is live &mdash; in the
+        meantime, <a href="{a['support']}">get in touch</a> if you have questions.</p>
       </div>
 
       <h2>Privacy</h2>
-      <p>No analytics, no advertising frameworks, no networking code. Read the
+      <p>Online play and the Chip Bank keep your chips on Owl Orchard&rsquo;s server, under your
+      Game Center sign-in. Ads come from Google AdMob, which the app asks for non-personalized
+      ads only, and nothing in the app tracks you across other apps or websites. Read the
       <a href="{a['privacy']}">full privacy policy</a>.</p>
     </div>
   </div>
 </section>
 """
-    page(a["slug"], "Poker for iMessage — Owl Orchard", a["meta_desc"], body,
+    page(a["slug"], "Pocket Poker — Owl Orchard", a["meta_desc"], body,
          theme=a["theme"], icon=a["icon"], jsonld=app_jsonld(a))
+
+
+def build_pocketpoker_support():
+    a = BY["poker"]
+    body = f"""
+<section class="hero {a['theme']}" style="padding-bottom:clamp(28px,4vw,40px)">
+  <div class="wrap">
+    <div class="prose">
+      <span class="eyebrow">Support</span>
+      <h1>{a['name']}</h1>
+      <p class="lede">Found a bug, spotted a bad translation, or have a question? Write to
+      <a href="mailto:{EMAIL}">{EMAIL}</a>. Every message is read, and answered by the person who
+      built the app.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:{EMAIL}">Email support</a>
+      </div>
+      <p class="small"><a href="/{a['slug']}">Back to {a['short']}</a> &middot;
+      <a href="{a['privacy']}">Privacy policy</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section {a['theme']}" style="padding-top:clamp(34px,5vw,50px)">
+  <div class="wrap">
+    <div class="prose">
+      <h2>Reporting a bug</h2>
+      <p>Say what you were doing right before it went wrong, which game it was, and whether you
+      were at an online table or playing in Messages. A screenshot is worth several paragraphs.
+      Bad translations count as bugs too: if something reads badly in your language, that is
+      genuinely useful to hear, and it will get fixed.</p>
+
+      <h2>Chips</h2>
+
+      <h3>Where do chips come from?</h3>
+      <p>Everyone starts with 10,000. Below that, your stack refills by itself, a chip every six
+      seconds, back up to 10,000 &mdash; the bell in the Chip Bank can tell you when it&rsquo;s full.
+      Beyond that, chips come from winning, from watching an ad, or from a chip pack.</p>
+
+      <h3>I watched an ad. Where are my chips?</h3>
+      <p>Each ad watched to the end adds 1,000 chips, up to five a day; the day&rsquo;s five start
+      over at midnight UTC. Google confirms the ad to our server first, which usually takes a few
+      seconds and occasionally a few minutes. If the Chip Bank says the chips haven&rsquo;t been
+      added yet, they will be as soon as Google confirms, with nothing for you to do.</p>
+
+      <h3>I bought a chip pack, but the chips didn&rsquo;t appear.</h3>
+      <p>The purchase is kept safe until the bank can add the chips, and the app keeps trying
+      until it does: they land by themselves, and you are never charged twice. If they still
+      haven&rsquo;t arrived after a day, email us with the date of the purchase.</p>
+
+      <h3>I have a new iPhone. Where are my chips?</h3>
+      <p>Your chips belong to your Game Center account, not the device. Sign in to Game Center
+      with the same account and they are there. Card backs bought through the App Store come
+      back with <strong>Restore Purchases</strong> in Themes.</p>
+
+      <h3>Is there real money in Pocket Poker?</h3>
+      <p>No. Chips can be bought, but they are for play only: they have no cash value and
+      can&rsquo;t be cashed out, transferred, or exchanged for money or prizes.</p>
+
+      <h2>Playing online</h2>
+
+      <h3>Do I need an account?</h3>
+      <p>No separate account. Online tables and the Chip Bank use your Game Center sign-in
+      (Settings &rsaquo; Game Center). Games in Messages, Learn, and the AI trainer need
+      nothing at all.</p>
+
+      <h3>It says it couldn&rsquo;t reach the tables, or that Game Center couldn&rsquo;t confirm who I am.</h3>
+      <p>Check your connection and that you are signed in to Game Center, then try again in a
+      moment. If it keeps happening, email us with your iOS version.</p>
+
+      <h3>What happens if I leave in the middle of a hand?</h3>
+      <p>Your hand is played out for you &mdash; checking when it can, folding when it can&rsquo;t
+      &mdash; and your chips go back to your stack. If you only switch apps for a moment, your seat
+      waits a minute for you.</p>
+
+      <h2>Playing in Messages</h2>
+
+      <h3>Does my friend need the app?</h3>
+      <p>Everyone who plays needs it installed. Anyone in the thread who doesn&rsquo;t have it is
+      given a link to install it.</p>
+
+      <h3>Does it work in a group chat?</h3>
+      <p>Yes &mdash; one on one or with the whole group, turn by turn, at everyone&rsquo;s own
+      pace.</p>
+
+      <h2>Card backs</h2>
+
+      <h3>I bought a card back in Card Games for iMessage. Why don&rsquo;t I see it here?</h3>
+      <p>Card backs are shared between Pocket Poker and Card Games for iMessage. Open Pocket
+      Poker once so it can load your designs, check that your devices use the same iCloud
+      account, or use <strong>Restore Purchases</strong> in Themes. If it still hasn&rsquo;t
+      appeared, email us the name of the design and which app you bought it in.</p>
+
+      <h2>Refunds</h2>
+      <p>Purchases are handled by Apple, so refunds are too: visit
+      <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>,
+      sign in with your Apple Account, and choose the purchase. When a chip pack is refunded,
+      its chips are taken back from your stack, as far as they are still there.</p>
+
+      <h2>Contact</h2>
+      <p>
+        Owl Orchard LLC<br>
+        Oregon, United States<br>
+        <a href="mailto:{EMAIL}">{EMAIL}</a>
+      </p>
+    </div>
+  </div>
+</section>
+"""
+    page(a["support"].lstrip("/"), "Support — Pocket Poker — Owl Orchard",
+         "Support and frequently asked questions for Pocket Poker.", body,
+         theme=a["theme"], icon=a["icon"])
 
 
 # ================================================================== about
@@ -856,9 +998,9 @@ def build_about():
       <h2>Small on purpose</h2>
       <p>Owl Orchard is independent, with no investors and no growth target. Nobody here making the case for an
       analytics SDK, nobody who needs a retention metric to move, and no reason for any of
-      these apps to want anything from you beyond the time you choose to spend in them. The
-      two iMessage apps ship with no networking code whatsoever. The other three are specific,
-      in writing, about the few things that leave your device.</p>
+      these apps to want anything from you beyond the time you choose to spend in them. Card
+      Games for iMessage ships with no networking code whatsoever. The other four are specific,
+      in writing, about the things that leave your device.</p>
 
       <h2>Where it is</h2>
       <p>The studio is registered and run in Oregon, United States. Support email is answered
@@ -871,7 +1013,7 @@ def build_about():
   ("Apps", '<a href="/hex-chess.html">Hex Chess</a>, <a href="/politica.html">Politica</a>, '
            '<a href="/prism.html">Prism</a>, '
            '<a href="/card-games-for-imessage.html">Card Games for iMessage</a>, and '
-           '<a href="/pocketpoker.html">Poker for iMessage</a>'),
+           '<a href="/pocketpoker.html">Pocket Poker</a>'),
   ("Contact", f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
 ])}
 
@@ -962,10 +1104,10 @@ def build_support():
       <p>Both ship alongside the app. The plug-in appears in Music&rsquo;s own Visualizer menu; the
       screen saver appears in System Settings once installed.</p>
 
-      <h2 id="card-games">Card Games and Poker for iMessage</h2>
+      <h2 id="card-games">Card Games for iMessage</h2>
 
-      <h3>I bought a card back in one app. Why don&rsquo;t I see it in the other?</h3>
-      <p>You should &mdash; card backs are shared between both apps. If a design has not appeared
+      <h3>I bought a card back in Pocket Poker. Why don&rsquo;t I see it here?</h3>
+      <p>You should &mdash; card backs are shared between Card Games for iMessage and Pocket Poker. If a design has not appeared
       yet, try these in order:</p>
       <ul>
         <li>Open the other app and let it finish loading its card back list once. A purchase
@@ -985,12 +1127,12 @@ def build_support():
       <p>Both players do, to take turns. If someone in the thread does not have it, the
       message they receive includes a link to install it.</p>
 
-      <h3>Is there real money in Poker for iMessage?</h3>
-      <p>No. Chips have no monetary value and cannot be bought, cashed out, transferred, or
-      exchanged for anything. It is a simulated card game with no wagering of any kind.</p>
-
       <h3>Does it work in a group chat?</h3>
-      <p>Yes. Both apps support group games as well as one-on-one threads.</p>
+      <p>Yes. It supports group games as well as one-on-one threads.</p>
+
+      <h2 id="pocket-poker">Pocket Poker</h2>
+      <p>Pocket Poker has its own support page, with answers about chips, online tables, and
+      ads: <a href="/pocketpoker/support.html">owlorchard.com/pocketpoker/support</a>.</p>
 
       <h2 id="refunds">Refunds</h2>
       <p>In-app purchases are handled entirely by Apple, so refunds go through Apple rather
@@ -1010,7 +1152,7 @@ def build_support():
 """
     page("support.html", "Support — Owl Orchard",
          "Support and frequently asked questions for Hex Chess, Politica, Prism, Card Games "
-         "for iMessage, and Poker for iMessage.", body, current="/support.html")
+         "for iMessage, and Pocket Poker.", body, current="/support.html")
 
 
 # ================================================================== privacy
@@ -1036,7 +1178,7 @@ RIGHTS = f"""
       </p>"""
 
 
-def privacy_page(app, lede, inner, title=None):
+def privacy_page(app, lede, inner, title=None, rights=RIGHTS, updated=UPDATED):
     body = f"""
 <section class="hero {app['theme']}" style="padding-bottom:clamp(28px,4vw,40px)">
   <div class="wrap">
@@ -1044,7 +1186,7 @@ def privacy_page(app, lede, inner, title=None):
       <span class="eyebrow">Privacy policy</span>
       <h1>{app['name']}</h1>
       <p class="lede">{lede}</p>
-      <p class="small">Last updated {UPDATED} &middot;
+      <p class="small">Last updated {updated} &middot;
       <a href="/{app['slug']}">Back to {app['short']}</a> &middot;
       <a href="/privacy.html">All policies</a></p>
     </div>
@@ -1055,7 +1197,7 @@ def privacy_page(app, lede, inner, title=None):
   <div class="wrap">
     <div class="prose">
 {inner}
-{RIGHTS}
+{rights}
     </div>
   </div>
 </section>
@@ -1067,28 +1209,14 @@ def privacy_page(app, lede, inner, title=None):
 
 
 def imessage_privacy(app):
-    other = "Card Games for iMessage" if app["key"] == "poker" else "Poker for iMessage"
-    gambling = ""
-    if app["key"] == "poker":
-        gambling = """
-      <h2>No real-money gambling</h2>
-      <p>Poker for iMessage is a simulated card game. Chips have no monetary value, cannot be
-      purchased, and cannot be cashed out, transferred, or exchanged for anything of value.
-      The app involves no wagering of real money or real-world items, and it therefore collects
-      none of the identity or financial information that real-money gaming would require.</p>
-"""
-    children = ("""
-      <h2>Children</h2>
-      <p>Poker for iMessage is not directed to children, and because it depicts simulated
-      gambling it carries a mature age rating on the App Store. No information is knowingly
-      collected from children &mdash; and in fact none is collected from anyone.</p>
-""" if app["key"] == "poker" else f"""
+    other = "Pocket Poker"
+    children = f"""
       <h2>Children</h2>
       <p>{app['name']} does not knowingly collect information from children, and in fact
       collects none from anyone. There is no advertising, no user-generated content beyond the
       card moves players exchange in their own conversations, and no external links other than
       to Apple&rsquo;s own purchase and support pages.</p>
-""")
+"""
     inner = f"""      <p>{app['name']} is published by Owl Orchard LLC, an Oregon limited liability company.
       This policy explains what the app does and does not do with information. The short
       version: it collects nothing, and there is no Owl Orchard server for anything to be
@@ -1144,12 +1272,125 @@ def imessage_privacy(app):
       counts and totals by territory &mdash; which cannot identify any individual purchaser.</p>
       <p>Refunds are handled by Apple at
       <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</p>
-{gambling}{children}
+{children}
       <h2>Removing your data</h2>
       <p>To remove everything the app has stored on your device, delete the app.</p>"""
     privacy_page(app,
         "This app collects nothing. It contains no analytics, no advertising, and no "
         "networking code of any kind.", inner)
+
+
+POCKET_RIGHTS = f"""
+      <h2>Your rights</h2>
+      <p>Privacy laws including the GDPR and the CCPA give you the right to access, correct,
+      delete, and port the personal information a company holds about you, and to opt out of
+      its sale. For what Owl Orchard&rsquo;s server holds &mdash; your player ID, name, photo, and
+      chip wallet &mdash; email the address below. Owl Orchard does not sell personal information,
+      and the app asks Google not to use yours for personalized advertising.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>If this policy changes, the updated version is posted on this page with a new date.
+      Material changes are noted in the app&rsquo;s release notes.</p>
+
+      <h2>Contact</h2>
+      <p>
+        Owl Orchard LLC<br>
+        Oregon, United States<br>
+        <a href="mailto:{EMAIL}">{EMAIL}</a>
+      </p>"""
+
+
+def build_pocketpoker_privacy():
+    a = BY["poker"]
+    inner = """      <p>Pocket Poker is published by Owl Orchard LLC, an Oregon limited liability company.
+      This policy explains what the app collects and why. The short version: to play online,
+      the app signs you in with Game Center and keeps your chips on Owl Orchard&rsquo;s server,
+      and its optional ads come from Google AdMob. Nothing is sold, and you are never tracked
+      across other apps or websites.</p>
+
+      <h2>Online play and your chips</h2>
+      <p>Quick Play and the Chip Bank use your Game Center sign-in. Apple confirms to Owl
+      Orchard&rsquo;s server who you are, and the server keeps:</p>
+      <ul>
+        <li><strong>Your Game Center player ID and display name.</strong> The ID is one Apple
+        creates for Owl Orchard&rsquo;s games, not your Apple Account.</li>
+        <li><strong>Your Game Center photo</strong>, if you have one, as a small image.</li>
+        <li><strong>Your chip wallet</strong> &mdash; your balance and each change to it: the tables
+        you bought into and cashed out of, chip packs bought and refunded, chips from ads, and
+        card backs bought with chips.</li>
+      </ul>
+      <p>The other players at your table see your display name and photo, your bets, and any
+      cards you show at a showdown. The record of a table you have left is removed after about a
+      month. Your wallet is kept so your chips are there when you come back.</p>
+      <p>Like any website, the server sees your device&rsquo;s IP address when the app connects; it
+      is not stored with your wallet. The server runs on Cloudflare, which hosts it for Owl
+      Orchard.</p>
+
+      <h2>Purchases</h2>
+      <p>Chip packs and card backs are optional in-app purchases, processed entirely by Apple.
+      Your payment method, billing address, and Apple Account details are never seen or handled
+      by Owl Orchard. When you buy a chip pack, the app sends Apple&rsquo;s signed record of the
+      transaction &mdash; its ID, the product, and the date &mdash; to Owl Orchard&rsquo;s server, so the
+      chips are added exactly once. Apple tells the server about refunds, so refunded chips can
+      be taken back.</p>
+      <p>Refunds are handled by Apple at
+      <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</p>
+
+      <h2>Advertising</h2>
+      <p>The Chip Bank offers optional rewarded ads through Google AdMob. Google&rsquo;s software is
+      part of the app, and it loads an ad in advance so one is ready if you want it. To show ads,
+      measure them, and prevent fraud, Google collects information such as device identifiers,
+      your IP address and approximate location, information about your device and the app, and
+      how you interact with ads, under
+      <a href="https://policies.google.com/privacy" rel="noopener">Google&rsquo;s privacy policy</a>
+      (see also <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how
+      Google uses information from apps that use its services</a>).</p>
+      <p>The app asks Google for non-personalized ads only and to restrict how it processes your
+      data. It never asks for permission to track you, so your device&rsquo;s advertising identifier
+      is not available to it. When you finish an ad, Google tells Owl Orchard&rsquo;s server so the
+      chips can be added. That message carries a sealed code Google cannot read, so Google is
+      not told who you are.</p>
+
+      <h2>Playing in Messages</h2>
+      <p>Games in Messages travel as messages inside your own conversation, handled entirely by
+      Apple&rsquo;s Messages framework and subject to Apple&rsquo;s encryption and privacy practices.
+      They go to the people in the conversation and never pass through any Owl Orchard system.
+      The app does not access your contacts or your message history.</p>
+
+      <h2>On your device and in iCloud</h2>
+      <p>Your settings, your stats, and the last chip balance the server sent are stored on your
+      device. So that your stats and the card backs you own follow you to your other devices,
+      they are also written to Apple&rsquo;s iCloud key-value storage, in your own iCloud account and
+      governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple&rsquo;s privacy
+      policy</a>. Owl Orchard has no access to it. Card backs are shared with Card Games for
+      iMessage the same way.</p>
+      <p>If you ask to be told when your stack is full, the app schedules that notification on
+      your device. No push server is involved.</p>
+
+      <h2>Game Center</h2>
+      <p>Achievements and your Game Center profile belong to Apple&rsquo;s Game Center, governed by
+      Apple&rsquo;s privacy policy.</p>
+
+      <h2>No real-money gambling</h2>
+      <p>Pocket Poker is a simulated card game. Chips can be bought, but they have no cash value
+      and cannot be cashed out, transferred, or exchanged for anything of value. The app involves
+      no wagering of real money or real-world items, and it collects none of the identity or
+      financial information that real-money gaming would require.</p>
+
+      <h2>Children</h2>
+      <p>Pocket Poker is not directed to children, and because it depicts simulated gambling it
+      carries a mature age rating on the App Store. No information is knowingly collected from
+      children.</p>
+
+      <h2>Removing your data</h2>
+      <p>To remove what the app has stored on your device, delete the app. To have Owl
+      Orchard&rsquo;s server delete your player ID, name, photo, and chip wallet, email the address
+      below with the Game Center name you play under. Once it is deleted, your chips are gone for
+      good.</p>"""
+    privacy_page(a,
+        "To play online, Pocket Poker keeps your chips on Owl Orchard&rsquo;s server under your Game "
+        "Center sign-in. Its optional ads come from Google AdMob, without tracking. Nothing is sold.",
+        inner, rights=POCKET_RIGHTS, updated=a["updated"])
 
 
 def build_privacy_hexchess():
@@ -1311,7 +1552,7 @@ def build_privacy_index():
         </div>
         <p class="desc">{s}</p>
         <div class="card-foot">
-          <span class="pill">Updated {UPDATED}</span>
+          <span class="pill">Updated {a.get('updated', UPDATED)}</span>
           <span class="more" aria-hidden="true">Read &rarr;</span>
         </div>
       </a>""" for a, s in [
@@ -1322,7 +1563,8 @@ def build_privacy_index():
         (BY["prism"],    "Nothing collected, nothing recorded. One anonymous song lookup for "
                          "preset matching."),
         (BY["cardgames"],"Nothing collected. The app contains no networking code at all."),
-        (BY["poker"],    "Nothing collected. The app contains no networking code at all."),
+        (BY["poker"],    "Online play keeps your chips on our server under your Game Center "
+                         "sign-in. Optional ads from Google AdMob, non-personalized."),
     ])
     body = f"""
 <section class="hero">
@@ -1330,11 +1572,12 @@ def build_privacy_index():
     <div class="prose">
       <span class="eyebrow">Legal</span>
       <h1>Privacy policies</h1>
-      <p class="lede">One policy per app, because the apps genuinely differ. Two of them
-      contain no networking code whatsoever; the others are specific about the few things that
-      do leave your device.</p>
-      <p>What is true across all five: no advertising frameworks, no third-party analytics, no
-      tracking across apps or websites, and nothing sold or shared with anyone.</p>
+      <p class="lede">One policy per app, because the apps genuinely differ. Card Games for
+      iMessage contains no networking code whatsoever; the others are specific about the things
+      that do leave your device.</p>
+      <p>What is true across all five: no third-party analytics, no tracking across apps or
+      websites, and nothing sold. The one advertising framework is Google AdMob, in Pocket
+      Poker, for its optional rewarded ads.</p>
     </div>
   </div>
 </section>
@@ -1347,8 +1590,8 @@ def build_privacy_index():
 </section>
 """
     page("privacy.html", "Privacy policies — Owl Orchard",
-         "Privacy policies for Hex Chess, Politica, Prism, Card Games for iMessage, and Poker "
-         "for iMessage. No advertising, no analytics, nothing sold or shared.",
+         "Privacy policies for Hex Chess, Politica, Prism, Card Games for iMessage, and Pocket "
+         "Poker. No third-party analytics, no tracking, nothing sold.",
          body)
 
 
@@ -1420,10 +1663,13 @@ Sitemap: {SITE}/sitemap.xml
 APP_ADS = """google.com, pub-8402492093831742, DIRECT, f08c47fec0942fa0
 """
 
-# Old addresses, still linked from outside, sent on to the pages that replaced them. Poker's page moved
-# to /pocketpoker, the address on its App Store listing.
+# Old addresses, still linked from outside, sent on to the pages that replaced them. Pocket Poker's pages
+# moved to /pocketpoker, /pocketpoker/support and /pocketpoker/privacy, the addresses on its App Store
+# listing.
 REDIRECTS = """/poker-for-imessage.html /pocketpoker 301
 /poker-for-imessage /pocketpoker 301
+/privacy-poker.html /pocketpoker/privacy 301
+/privacy-poker /pocketpoker/privacy 301
 """
 
 
@@ -1436,6 +1682,7 @@ def build_extras():
     urls = ["/", "/about.html", "/support.html", "/privacy.html"]
     urls += ["/" + a["slug"] for a in APPS]
     urls += [a["privacy"] for a in APPS]
+    urls += [a["support"] for a in APPS if a.get("support")]
     entries = "".join(
         f"\n  <url><loc>{SITE}{u}</loc><lastmod>2026-08-31</lastmod>"
         f"<priority>{'1.0' if u == '/' else '0.8' if not u.startswith('/privacy') else '0.4'}</priority></url>"
@@ -1458,6 +1705,7 @@ if __name__ == "__main__":
     build_prism()
     build_cardgames()
     build_poker()
+    build_pocketpoker_support()
     build_about()
     build_support()
     build_privacy_index()
@@ -1465,7 +1713,7 @@ if __name__ == "__main__":
     build_privacy_politica()
     build_privacy_prism()
     imessage_privacy(BY["cardgames"])
-    imessage_privacy(BY["poker"])
+    build_pocketpoker_privacy()
     build_404()
     build_extras()
     print("done.")
